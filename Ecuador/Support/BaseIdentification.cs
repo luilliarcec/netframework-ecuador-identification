@@ -52,7 +52,7 @@ namespace Luilliarcec.Identification.Ecuador.Support
             LengthValidation(identification_number);
             ProvinceCodeValidation(identification_number);
             ThirdDigitValidation(identification_number);
-            if (GetType() == typeof(PrivateRuc) || GetType() == typeof(PrivateRuc))
+            if (GetType() == typeof(PublicRuc) || GetType() == typeof(PrivateRuc))
             {
                 LastsDigitsValidation(identification_number);
                 ModuleElevenValidation(identification_number);
