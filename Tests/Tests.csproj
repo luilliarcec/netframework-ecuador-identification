@@ -55,6 +55,7 @@
     <Compile Include="Unit\NaturalRucTest.cs" />
     <Compile Include="Unit\PublicRucTest.cs" />
     <Compile Include="Unit\PrivateRucTest.cs" />
+    <Compile Include="Unit\OtherValidationsTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
