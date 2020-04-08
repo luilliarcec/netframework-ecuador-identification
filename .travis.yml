@@ -1,0 +1,12 @@
+language: csharp
+solution: Identification.sln
+
+mono:
+  - latest
+
+install:
+  - nuget restore Identification.sln
+  - nuget install NUnit.Console -Version 3.9.0 -OutputDirectory testrunner
+script:
+  - msbuild /p:Configuration=Release Identification.sln
+  - mono ./testrunner/NUnit.ConsoleRunner.3.9.0/tools/nunit3-console.exe ./Identification/Tests/bin/Release/Tests.dll
