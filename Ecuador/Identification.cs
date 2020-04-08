@@ -109,5 +109,68 @@ namespace Luilliarcec.Identification.Ecuador
                 ErrorMessage = ex.Message; return null;
             }
         }
+
+        /// <summary>
+        /// Validates the Ecuadorian RUC
+        /// </summary>
+        /// <param name="identification_number">Number of RUC</param>
+        /// <returns>string|null</returns>
+        public static string ValidateRuc(string identification_number)
+        {
+            string result;
+
+            if ((result = ValidatePrivateRuc(identification_number)) != null) {
+                return result;
+            }
+
+            if ((result = ValidatePublicRuc(identification_number)) != null)
+            {
+                return result;
+            }
+
+            return ValidateNaturalRuc(identification_number);
+        }
+
+        /// <summary>
+        /// Validate that the number belongs to natural persons
+        /// </summary>
+        /// <param name="identification_number">Number of identification</param>
+        /// <returns>string|null</returns>
+        public static string ValidateIsNaturalPerson(string identification_number)
+        {
+            return ValidatePersonalIdentification(identification_number) ?? ValidateNaturalRuc(identification_number);
+        }
+
+        /// <summary>
+        /// Validate that the number belongs to juridical persons
+        /// </summary>
+        /// <param name="identification_number">Number of identification</param>
+        /// <returns>string|null</returns>
+        public static string ValidateIsJuridicalPerson(string identification_number)
+        {
+            return ValidatePrivateRuc(identification_number) ?? ValidatePublicRuc(identification_number);
+        }
+
+        /// <summary>
+        /// Validate the number with all types of documents
+        /// </summary>
+        /// <param name="identification_number">Number of identification</param>
+        /// <returns>string|null</returns>
+        public static string ValidateAllTypeIdentification(string identification_number)
+        {
+            string result;
+
+            if ((result = ValidateFinalCustomer(identification_number)) != null)
+            {
+                return result;
+            }
+
+            if ((result = ValidatePersonalIdentification(identification_number)) != null)
+            {
+                return result;
+            }
+
+            return ValidateRuc(identification_number);
+        }
     }
 }
