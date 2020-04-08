@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/luilliarcec/netframework-ecuador-identification</projectUrl>
+    <repository type="git" url="https://github.com/luilliarcec/netframework-ecuador-identification.git" branch="master" commit="" />
+    <description>$description$</description>
+    <releaseNotes>Validations Ruc and Personal identifications.</releaseNotes>
+    <copyright>Copyright 2020</copyright>
+    <tags>Ecuador Inovice RUC SRI Factura Cedula</tags>
+  </metadata>
+</package>
