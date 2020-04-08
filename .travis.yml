@@ -1,5 +1,6 @@
 language: csharp
 solution: Identification.sln
+os: windows
 
 mono:
   - latest
