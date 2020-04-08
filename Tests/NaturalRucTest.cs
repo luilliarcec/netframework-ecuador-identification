@@ -64,6 +64,10 @@ namespace Tests
         {
             Assert.AreEqual("04", Identification.ValidateNaturalRuc("1710034065001"));
             Assert.IsNull(Identification.ErrorMessage);
+
+            Assert.IsNull(Identification.ValidateNaturalRuc("1710834065001"));
+            Assert.AreEqual("The identification number is invalid.",
+                            Identification.ErrorMessage);
         }
     }
 }

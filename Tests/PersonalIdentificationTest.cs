@@ -55,6 +55,10 @@ namespace Tests
         {
             Assert.AreEqual("05", Identification.ValidatePersonalIdentification("1710034065"));
             Assert.IsNull(Identification.ErrorMessage);
+
+            Assert.IsNull(Identification.ValidatePersonalIdentification("1710834065"));
+            Assert.AreEqual("The identification number is invalid.",
+                            Identification.ErrorMessage);
         }
     }
 }
