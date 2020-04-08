@@ -52,5 +52,24 @@ namespace Luilliarcec.Identification.Ecuador
                 ErrorMessage = ex.Message; return null;
             }
         }
+
+        /// <summary>
+        /// Validates the Ecuadorian RUC of Natural Person
+        /// </summary>
+        /// <param name="identification_number">Number of RUC Natural</param>
+        /// <returns>string|null</returns>
+        public static string ValidateNaturalRuc(string identification_number)
+        {
+            ErrorMessage = null;
+
+            try
+            {
+                return new NaturalRuc().Validate(identification_number);
+            }
+            catch (IdentificationException ex)
+            {
+                ErrorMessage = ex.Message; return null;
+            }
+        }
     }
 }
