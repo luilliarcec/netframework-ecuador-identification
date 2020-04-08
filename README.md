@@ -1,4 +1,4 @@
-# Net Framework Logger
+# Net Framework Ecuador Identification
 
 [![latest version](https://img.shields.io/nuget/v/Luilliarcec.Identification.Ecuador)](https://www.nuget.org/packages/Luilliarcec.Identification.Ecuador) 
 [![downloads](https://img.shields.io/nuget/dt/Luilliarcec.Identification.Ecuador)](https://www.nuget.org/packages/Luilliarcec.Identification.Ecuador)
@@ -42,15 +42,15 @@ The static class exposes the following methods.:
 
 | Methods | Return | Description |
 | -- | -- | -- |
-| ValidateFinalCustomer | `string|null` | Validates the Ecuadorian Final Consumer |
-| ValidatePersonalIdentification | `string|null` | Validates the Ecuadorian Identification Card |
-| ValidateNaturalRuc | `string|null` | Validates the Ecuadorian RUC of Natural Person |
-| ValidatePublicRuc | `string|null` | Validates the Ecuadorian RUC of Public Companies |
-| ValidatePrivateRuc | `string|null` | Validates the Ecuadorian RUC of Private Companies |
-| ValidateRuc | `string|null` | Validates the Ecuadorian RUC |
-| ValidateIsNaturalPerson | `string|null` | Validate that the number belongs to natural persons |
-| ValidateIsJuridicalPerson | `string|null` | Validate that the number belongs to juridical persons |
-| ValidateAllTypeIdentification | `string|null` | Validate the number with all types of documents |
+| ValidateFinalCustomer | `string or null` | Validates the Ecuadorian Final Consumer |
+| ValidatePersonalIdentification | `string or null` | Validates the Ecuadorian Identification Card |
+| ValidateNaturalRuc | `string or null` | Validates the Ecuadorian RUC of Natural Person |
+| ValidatePublicRuc | `string or null` | Validates the Ecuadorian RUC of Public Companies |
+| ValidatePrivateRuc | `string or null` | Validates the Ecuadorian RUC of Private Companies |
+| ValidateRuc | `string or null` | Validates the Ecuadorian RUC |
+| ValidateIsNaturalPerson | `string or null` | Validate that the number belongs to natural persons |
+| ValidateIsJuridicalPerson | `string or null` | Validate that the number belongs to juridical persons |
+| ValidateAllTypeIdentification | `string or null` | Validate the number with all types of documents |
 
 Follow these tips and have a happy code. 
 
