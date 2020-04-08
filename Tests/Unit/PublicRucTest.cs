@@ -1,8 +1,7 @@
-﻿using System;
-using Luilliarcec.Identification.Ecuador;
+﻿using Luilliarcec.Identification.Ecuador;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Tests
+namespace Tests.Unit
 {
     [TestClass]
     public class PublicRucTest

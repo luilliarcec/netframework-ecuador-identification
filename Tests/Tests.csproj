@@ -49,11 +49,12 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PersonalIdentificationTest.cs" />
-    <Compile Include="FinalCustomerTest.cs" />
+    <Compile Include="Unit\PersonalIdentificationTest.cs" />
+    <Compile Include="Unit\FinalCustomerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="NaturalRucTest.cs" />
-    <Compile Include="PublicRucTest.cs" />
+    <Compile Include="Unit\NaturalRucTest.cs" />
+    <Compile Include="Unit\PublicRucTest.cs" />
+    <Compile Include="Unit\PrivateRucTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
