@@ -52,6 +52,7 @@
     <Compile Include="PersonalIdentificationTest.cs" />
     <Compile Include="FinalCustomerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="NaturalRucTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
