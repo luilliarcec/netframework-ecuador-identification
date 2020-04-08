@@ -1,82 +1,56 @@
 # Net Framework Logger
 
-[![latest version](https://img.shields.io/nuget/v/Luilliarcec.Logger)](https://www.nuget.org/packages/Luilliarcec.Logger) 
-[![downloads](https://img.shields.io/nuget/dt/Luilliarcec.Logger)](https://www.nuget.org/packages/Luilliarcec.Logger)
+[![latest version](https://img.shields.io/nuget/v/Luilliarcec.Identification.Ecuador)](https://www.nuget.org/packages/Luilliarcec.Identification.Ecuador) 
+[![downloads](https://img.shields.io/nuget/dt/Luilliarcec.Identification.Ecuador)](https://www.nuget.org/packages/Luilliarcec.Identification.Ecuador)
 
-Helps keep a record of exceptions generated at runtime.
+Validations for identifications of people and companies of Ecuador, an important requirement for electronic invoicing.
 
 ## Installation
 
 You can install the package via nuget:
 
 ```bash
-dotnet add package Luilliarcec.Logger
+dotnet add package Luilliarcec.Identification.Ecuador
 ```
 
 ## Usage
 
-You can use the Logger in each method that is necessary
+You can use it by following this example
 
 ```csharp
-using Luilliarcec.Logger;
+using Luilliarcec.Identification.Ecuador;
 // ...
 
 namespace Test
 {
     public class Foo
     {
-        public void Sumar() 
+        public void Save(string identification_number) 
         {
-            try {
-                // ...    
-            } catch (Exception ex) {
-                Log.Error(ex);    
-            }  
+            string code;
+
+            if ((code = Identification.ValidateAllTypeIdentification(identification_number)) != null) 
+            {
+                Console.WriteLine(code);
+            }
         }
     }
 }
 ```
 
-Or you can use the Application.ThreadException event to catch all the unhandled errors.
-
-```csharp
-using Luilliarcec.Logger;
-// ...
-
-namespace YourProject
-{
-    static class Program
-    {
-        /// <summary>
-        /// Punto de entrada principal para la aplicación.
-        /// </summary>
-        [STAThread]
-        static void Main()
-        {
-            // ...
-            Application.ThreadException += Application_ThreadException;
-            // ...
-        }
-
-        private static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
-        {
-            Log.Error(e.Exception);
-        }
-    }
-}
-```
-
-The exposed methods to keep an error log are:
+The static class exposes the following methods.:
 
 | Methods | Return | Description |
 | -- | -- | -- |
-| Error | `bool` | Save the file with error type |
-| Warning | `bool` | Save the file with warning type |
-| Info | `bool` | Save the file with information type |
-| Drop | `bool` | Delete the file |
-| Copy | `bool` | Copy the file to a destination path |
-| Exists | `bool` | Verify that the file exists in the directory |
-| Path | `property (get, set)` | Log path, default project root directory |
+| ValidateFinalCustomer | `string|null` | Validates the Ecuadorian Final Consumer |
+| ValidatePersonalIdentification | `string|null` | Validates the Ecuadorian Identification Card |
+| ValidateNaturalRuc | `string|null` | Validates the Ecuadorian RUC of Natural Person |
+| ValidatePublicRuc | `string|null` | Validates the Ecuadorian RUC of Public Companies |
+| ValidatePrivateRuc | `string|null` | Validates the Ecuadorian RUC of Private Companies |
+| ValidateRuc | `string|null` | Validates the Ecuadorian RUC |
+| ValidateIsNaturalPerson | `string|null` | Validate that the number belongs to natural persons |
+| ValidateIsJuridicalPerson | `string|null` | Validate that the number belongs to juridical persons |
+| ValidateAllTypeIdentification | `string|null` | Validate the number with all types of documents |
 
 Follow these tips and have a happy code. 
 

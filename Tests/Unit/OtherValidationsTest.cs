@@ -9,11 +9,11 @@ namespace Tests.Unit
         [TestMethod]
         public void ValidateThatAllTypesDocumenReturnCorrectValue()
         {
-            Assert.AreEqual("07", Identification.ValidateFinalCustomer("9999999999999"));
-            Assert.AreEqual("05", Identification.ValidatePersonalIdentification("1710034065"));
-            Assert.AreEqual("04", Identification.ValidateNaturalRuc("1710034065001"));
-            Assert.AreEqual("04", Identification.ValidatePublicRuc("1760001550001"));
-            Assert.AreEqual("04", Identification.ValidatePrivateRuc("1790011674001"));
+            Assert.AreEqual("07", Identification.ValidateAllTypeIdentification("9999999999999"));
+            Assert.AreEqual("05", Identification.ValidateAllTypeIdentification("1710034065"));
+            Assert.AreEqual("04", Identification.ValidateAllTypeIdentification("1710034065001"));
+            Assert.AreEqual("04", Identification.ValidateAllTypeIdentification("1760001550001"));
+            Assert.AreEqual("04", Identification.ValidateAllTypeIdentification("1790011674001"));
         }
 
         [TestMethod]
