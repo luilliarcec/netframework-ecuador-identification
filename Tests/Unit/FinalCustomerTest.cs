@@ -9,16 +9,14 @@ namespace Tests.Unit
         [TestMethod]
         public void ValidateThatEmptyValuesAreNotAllowed()
         {
-            var result = Identification.ValidateFinalCustomer("");
-            Assert.IsNull(result);
+            Assert.IsNull(Identification.ValidateFinalCustomer(""));
             Assert.AreEqual("The identification number is invalid.", Identification.ErrorMessage);
         }
 
         [TestMethod]
         public void ValidateThatTheNumberIsValid()
         {
-            var result = Identification.ValidateFinalCustomer("9999999999999");
-            Assert.AreEqual("07", result);
+            Assert.AreEqual("07", Identification.ValidateFinalCustomer("9999999999999"));
             Assert.IsNull(Identification.ErrorMessage);
         }
     }
