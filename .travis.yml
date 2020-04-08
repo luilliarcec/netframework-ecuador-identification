@@ -2,9 +2,6 @@ language: csharp
 solution: Identification.sln
 os: windows
 
-mono:
-  - latest
-
 install:
   - nuget restore Identification.sln
   - nuget install NUnit.Console -Version 3.9.0 -OutputDirectory testrunner
