@@ -71,5 +71,24 @@ namespace Luilliarcec.Identification.Ecuador
                 ErrorMessage = ex.Message; return null;
             }
         }
+
+        /// <summary>
+        /// Validates the Ecuadorian RUC of Public Companies
+        /// </summary>
+        /// <param name="identification_number">Number of RUC Public Companies</param>
+        /// <returns>string|null</returns>
+        public static string ValidatePublicRuc(string identification_number)
+        {
+            ErrorMessage = null;
+
+            try
+            {
+                return new PublicRuc().Validate(identification_number);
+            }
+            catch (IdentificationException ex)
+            {
+                ErrorMessage = ex.Message; return null;
+            }
+        }
     }
 }
