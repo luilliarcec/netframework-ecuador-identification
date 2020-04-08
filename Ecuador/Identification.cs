@@ -33,5 +33,24 @@ namespace Luilliarcec.Identification.Ecuador
                 ErrorMessage = ex.Message; return null;
             }
         }
+
+        /// <summary>
+        /// Validates the Ecuadorian Identification Card
+        /// </summary>
+        /// <param name="identification_number">Number of Identification Card</param>
+        /// <returns>string|null</returns>
+        public static string ValidatePersonalIdentification(string identification_number)
+        {
+            ErrorMessage = null;
+
+            try
+            {
+                return new PersonalIdentification().Validate(identification_number);
+            }
+            catch (IdentificationException ex)
+            {
+                ErrorMessage = ex.Message; return null;
+            }
+        }
     }
 }
