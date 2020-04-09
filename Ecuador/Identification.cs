@@ -1,10 +1,5 @@
 ﻿using Luilliarcec.Identification.Ecuador.Exceptions;
 using Luilliarcec.Identification.Ecuador.Support;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Luilliarcec.Identification.Ecuador
 {
