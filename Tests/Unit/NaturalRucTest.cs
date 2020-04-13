@@ -46,7 +46,7 @@ namespace Tests.Unit
         public void ValidateThatTheThirdDigitIsValid()
         {
             Assert.IsNull(Identification.ValidateNaturalRuc("0164567898001"));
-            Assert.AreEqual("Field must have the third digit between 0 and 5.",
+            Assert.AreEqual("Field must have the third digit less than or equal to 5.",
                             Identification.ErrorMessage);
         }
 
