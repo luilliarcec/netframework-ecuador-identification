@@ -30,7 +30,7 @@ namespace Luilliarcec.Identification.Ecuador.Support
         /// <summary>
         /// Lasts digits of the identification number
         /// </summary>
-        protected string LastsDigits { get; set; }
+        protected string LastsDigits { get; set; } = string.Empty;
 
         /// <summary>
         /// Represents the position of the verifying digit in the identification number
@@ -43,38 +43,35 @@ namespace Luilliarcec.Identification.Ecuador.Support
         protected int[] Coefficients { get; set; }
 
         /// <summary>
-        /// Validate length identification, province code, third digit
+        /// Validate length identification, province code, third digit, lasts digits and module validations
         /// </summary>
-        /// <param name="identification_number">Personal identification or RUC</param>
-        /// <returns>Billing code or Error message</returns>
+        /// <param name="identification_number">Identification document</param>
+        /// <returns>Billing code or null</returns>
         public virtual string Validate(string identification_number)
         {
             LengthValidation(identification_number);
             ProvinceCodeValidation(identification_number);
             ThirdDigitValidation(identification_number);
+            LastsDigitsValidation(identification_number);
+
             if (GetType() == typeof(PublicRuc) || GetType() == typeof(PrivateRuc))
-            {
-                LastsDigitsValidation(identification_number);
+            {               
                 ModuleElevenValidation(identification_number);
             }
             else
             {
-                if (GetType() == typeof(NaturalRuc))
-                {
-                    LastsDigitsValidation(identification_number);
-                }
                 ModuleTenValidation(identification_number);
             }
 
             return BillingCode;
         }
 
-        #region <<< Private Functions >>>
+        #region <<< Protected Functions Validation >>>
         /// <summary>
         /// Initial validation of the identification, not empty, only digits, not less than the given length.
         /// </summary>
-        /// <param name="identification_number">Personal identification or RUC</param>
-        private void LengthValidation(string identification_number)
+        /// <param name="identification_number">Identification document</param>
+        protected void LengthValidation(string identification_number)
         {
             if (string.IsNullOrEmpty(identification_number))
             {
@@ -97,8 +94,8 @@ namespace Luilliarcec.Identification.Ecuador.Support
         /// The first 2 positions correspond to the province where it was issued,
         /// so the first two numbers will not be greater than 24 or less than 1
         /// </summary>
-        /// <param name="identification_number">Personal identification or RUC</param>
-        private void ProvinceCodeValidation(string identification_number)
+        /// <param name="identification_number">Identification document</param>
+        protected void ProvinceCodeValidation(string identification_number)
         {
             int code = GetProvinceCodeValue(identification_number);
 
@@ -111,19 +108,12 @@ namespace Luilliarcec.Identification.Ecuador.Support
         /// <summary>
         /// Valid the third digit
         /// </summary>
-        /// <param name="identification_number">Personal identification or RUC</param>
-        private void ThirdDigitValidation(string identification_number)
+        /// <param name="identification_number">Identification document</param>
+        protected virtual void ThirdDigitValidation(string identification_number)
         {
             int third_digit = GetThirdDigitValue(identification_number);
 
-            if (GetType() == typeof(NaturalRuc) || GetType() == typeof(PersonalIdentification))
-            {
-                if (third_digit < 0 || third_digit > ThirdDigit)
-                {
-                    throw new IdentificationException($"Field must have the third digit between {0} and {ThirdDigit}.");
-                }
-            }
-            else if (third_digit != ThirdDigit)
+            if (third_digit != ThirdDigit)
             {
                 throw new IdentificationException($"Field must have the third digit equal to {ThirdDigit}.");
             }
@@ -132,8 +122,8 @@ namespace Luilliarcec.Identification.Ecuador.Support
         /// <summary>
         /// Valid the lasts digits
         /// </summary>
-        /// <param name="identification_number">Personal identification or RUC</param>
-        private void LastsDigitsValidation(string identification_number)
+        /// <param name="identification_number">Identification document</param>
+        protected void LastsDigitsValidation(string identification_number)
         {
             string lasts_digits = GetLastsDigitsValue(identification_number);
 
@@ -146,8 +136,8 @@ namespace Luilliarcec.Identification.Ecuador.Support
         /// <summary>
         /// Module 10 Algorithm to validate if Certificates and RUC of natural person are valid.
         /// </summary>
-        /// <param name="identification_number">Personal identification or RUC of natural person</param>
-        private void ModuleTenValidation(string identification_number)
+        /// <param name="identification_number">Identification document of natural person</param>
+        protected void ModuleTenValidation(string identification_number)
         {
             int check_digit_value = GetCheckDigitValue(identification_number);
             char[] numbers = GetNumbersAsArray(identification_number);
@@ -178,8 +168,8 @@ namespace Luilliarcec.Identification.Ecuador.Support
         /// <summary>
         /// Module 11 Algorithm to validate if RUC of Public Companies and Private Companies are valid.
         /// </summary>
-        /// <param name="identification_number">Personal identification or RUC</param>
-        private void ModuleElevenValidation(string identification_number)
+        /// <param name="identification_number">Identification document</param>
+        protected void ModuleElevenValidation(string identification_number)
         {
             int check_digit_value = GetCheckDigitValue(identification_number);
             char[] numbers = GetNumbersAsArray(identification_number);
@@ -200,24 +190,15 @@ namespace Luilliarcec.Identification.Ecuador.Support
                 throw new IdentificationException("The identification number is invalid.");
             }
         }
+        #endregion
 
-        #region <<< Sub Functions Private >>>
-        /// <summary>
-        /// Gets the lasts digits value
-        /// </summary>
-        /// <param name="identification_number">Personal identification or RUC</param>
-        /// <returns>Value of the lasts digits</returns>
-        private string GetLastsDigitsValue(string identification_number)
-        {
-            return identification_number.Substring(Lenght - LastsDigits.Length, LastsDigits.Length);
-        }
-
+        #region <<< Protected Getting Functions >>>
         /// <summary>
         /// Gets the province code value
         /// </summary>
-        /// <param name="identification_number">Personal identification or RUC</param>
+        /// <param name="identification_number">Identification document</param>
         /// <returns>Value of the province code number</returns>
-        private int GetProvinceCodeValue(string identification_number)
+        protected int GetProvinceCodeValue(string identification_number)
         {
             return int.Parse(identification_number.Substring(0, 2));
         }
@@ -225,19 +206,29 @@ namespace Luilliarcec.Identification.Ecuador.Support
         /// <summary>
         /// Gets the third digit number
         /// </summary>
-        /// <param name="identification_number">Personal identification or RUC</param>
+        /// <param name="identification_number">Identification document</param>
         /// <returns>Value of the third digit number</returns>
-        private int GetThirdDigitValue(string identification_number)
+        protected int GetThirdDigitValue(string identification_number)
         {
             return int.Parse(identification_number.Substring(2, 1));
         }
 
         /// <summary>
+        /// Gets the lasts digits value
+        /// </summary>
+        /// <param name="identification_number">Identification document</param>
+        /// <returns>Value of the lasts digits</returns>
+        protected string GetLastsDigitsValue(string identification_number)
+        {
+            return identification_number.Substring(Lenght - LastsDigits.Length, LastsDigits.Length);
+        }
+
+        /// <summary>
         /// Gets the value of the verification number
         /// </summary>
-        /// <param name="identification_number">Personal identification or RUC</param>
+        /// <param name="identification_number">Identification document</param>
         /// <returns>Value of the verification number</returns>
-        private int GetCheckDigitValue(string identification_number)
+        protected int GetCheckDigitValue(string identification_number)
         {
             return int.Parse(identification_number.Substring(CheckDigitPosition - 1, 1));
         }
@@ -245,15 +236,12 @@ namespace Luilliarcec.Identification.Ecuador.Support
         /// <summary>
         /// Get identification numbers for verification as Array
         /// </summary>
-        /// <param name="identification_number">Personal identification or RUC</param>
+        /// <param name="identification_number">Identification document</param>
         /// <returns>Identification numbers for verification</returns>
-        private char[] GetNumbersAsArray(string identification_number)
+        protected char[] GetNumbersAsArray(string identification_number)
         {
-            var index = LastsDigits != null ? LastsDigits.Length : 0;
-
-            return identification_number.Substring(0, Lenght - (index + 1)).ToArray();
+            return identification_number.Substring(0, Lenght - (LastsDigits.Length + 1)).ToArray();
         }
-        #endregion
         #endregion
     }
 }
