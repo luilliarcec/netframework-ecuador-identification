@@ -9,7 +9,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <license type="expression">MIT</license>
     <projectUrl>https://github.com/luilliarcec/netframework-ecuador-identification</projectUrl>
-    <repository type="git" url="https://github.com/luilliarcec/netframework-ecuador-identification.git" branch="master" commit="de5d804f23eb616248630a6fe1731e92298b3d9a" />
+    <repository type="git" url="https://github.com/luilliarcec/netframework-ecuador-identification.git" branch="master" commit="76ae0a28d029ad4236e2eeae7eccf3414c255121" />
     <description>$description$</description>
     <releaseNotes>Validations Ruc and Personal identifications.</releaseNotes>
     <copyright>Copyright 2020</copyright>
