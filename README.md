@@ -1,6 +1,7 @@
 # Net Framework Ecuador Identification
 
 [![latest version](https://img.shields.io/nuget/v/Luilliarcec.Identification.Ecuador)](https://www.nuget.org/packages/Luilliarcec.Identification.Ecuador) 
+![Azure DevOps tests (branch)](https://img.shields.io/azure-devops/tests/luilliarcec/netframework-ecuador-identification/1/master)
 [![downloads](https://img.shields.io/nuget/dt/Luilliarcec.Identification.Ecuador)](https://www.nuget.org/packages/Luilliarcec.Identification.Ecuador)
 
 Validations for identifications of people and companies of Ecuador, an important requirement for electronic invoicing.
